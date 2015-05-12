@@ -90,7 +90,10 @@
 					var newArgs = Array.prototype.slice.call(arguments);
 					newArgs.shift();
 					self.currentEl = createChoose.apply(this, newArgs);
-					self.currentEl.querySelector('button').addEventListener('click', onContinue);
+					var options = self.currentEl.querySelectorAll('button');
+					for(var i=0; i<options.length; i++) {
+						options[i].addEventListener('click', onContinue);
+					}
 				break;
 			}
 
