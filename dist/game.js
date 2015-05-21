@@ -1,17 +1,4 @@
-// // function newPlayer = new Object();
-// newPlayer.myName=myName;
-// newPlayer.myClass=myClass;
-
-// // var player = newPlayer();
-
-
 function* chooseYourAdventure() {
-	// yield adventure.start('Welcome to an awesome adventure!');
-	// yield adventure.say('Hello world!');
-	// var name = yield adventure.ask('What is your name?');
-	// var chooseMessage = 'Hello, '+name+'! Would you like to go on an adventure?';
-	// var cont = yield adventure.choose(chooseMessage, 'Yes!', 'No thanks');
-	// adventure.end('That\'s all folks!');
 	yield adventure.say('Welcome to my adventure!')
 	var player = {}
 	player.myName = yield adventure.ask('What is your name?')
@@ -64,7 +51,7 @@ function* chooseYourAdventure() {
 		rollStats()
 	}
 	// yield adventure.say("Here are your stats, "+player.myClass+"!", "Strength:"+player.str+" "+"Stamina:"+player.stam+" "+"Intelligence:"+player.inte+" "+"Agility:"+player.agi+" "+"Dexterity:"+player.dex+" "+"Luck:"+player.luck+" ")
-	// var q = 3;   to be implemented in a later build
+	// var q = 3;  >>>>>>to be implemented in a later build<<<<<<
 	// if (q>0) {
 	// 	var reroll = yield adventure.choose("Would you like to reroll your stats?", "Yes", "No")
 	// 	q--
@@ -101,68 +88,91 @@ function* chooseYourAdventure() {
 	var myWeap = myWeap.replace(/\s+/, " ");
 	var weapons = {
 		SwordandShield: {
-			weapDam: 9,
-			weapArm: 9,
+			weapName: "Sword and Shield",
+			weapDam: 13,
+			weapArm: 14,
 			weapInt: 0,
-			weapAgi:-2
+			weapAgi: -2,
+			weapDex: 0
 		},
 		Lance: {
-			weapDam: 10,
-			weapArm: 9,
+			weapName: "Lance",
+			weapDam: 17,
+			weapArm: 11,
 			weapInt: 0,
-			weapAgi:-3
+			weapAgi:-3,
+			weapDex: 0
 		},
 		Greatsword: {
-			weapDam: 16,
-			weapArm: 4,
+			weapName: "Greatsword",
+			weapDam: 23,
+			weapArm: 6,
 			weapInt: 0,
-			weapAgi:-4
+			weapAgi:-4,
+			weapDex: 0
 		},
 		Staff: {
-			weapDam: 8,
+			weapName: "Staff",
+			weapDam: 11,
 			weapArm: 3,
-			weapInt: 6,
-			weapAgi:-1
+			weapInt: 12,
+			weapAgi:-1,
+			weapDex: 0
 		},
 		KnifeandPoisons: {
-			weapDam: 10,
+			weapName: "Knife and Poisons",
+			weapDam: 12,
 			weapArm: 0,
-			weapInt: 2,
-			weapAgi: 2
+			weapInt: 4,
+			weapAgi: 2,
+			weapDex: 3
 		},
 		DuelingRapierandDagger: {
-			weapDam: 9,
+			weapName: "Dueling Rapier and Dagger",
+			weapDam: 12,
 			weapArm: 2,
 			weapInt: 0,
-			weapAgi:5
+			weapAgi: 6,
+			weapDex: 5
 		},
-		AssassinsBlades: {
-			weapDam: 10,
+		AssassinBlades: {
+			weapName: "Assassin Blades",
+			weapDam: 13,
 			weapArm: 1,
 			weapInt: 0,
-			weapAgi: 5
+			weapAgi: 1,
+			weapDex: 4
 		},
 		BowandArrow: {
+			weapName: "Bow and Arrow",
 			weapDam: 11,
 			weapArm: 0,
 			weapInt: 0,
-			weapAgi: 5
+			weapAgi: 10,
+			weapDex: 3
 		},
 		OP: {
+			weapName: "#rekt",
 			weapDam: 99,
 			weapArm: 99,
 			weapInt: 99,
-			weapAgi: 99
+			weapAgi: 99,
+			weapDex: 99
 		}	
 	}
-	player.damage = ((player.str*.25)+weapDam);
-	player.hitPoints = ((player.stam+*.75))
-	}
+	myWeap=weapon[myWeap];
+	player.damage = ((player.str+myWeap.weapDam)*.25);
+	player.hitPoints = ((player.stam+myWeap.weapArm)*.75);
+	player.mana = ((player.inte+myWeap.weapInt)*.75);
+	player.dodgeChance = ((player.agi+myWeap.weapAgi)*.01);
+	player.critChance = ((player.dex+myWeap.weapDex)*.01)
+	yield adventure.say("Great choice, "+player.myClass+"!", "With your new "+myWeap.weapName+", here are your stats!"+" Strength:"+player.str+" "+"Stamina:"+player.stam+" "+"Intelligence:"+player.inte+" "+"Agility:"+player.agi+" "+"Dexterity:"+player.dex+" "+"Luck:"+player.luck+" ")
+	
 	// 	var newWeap = {};
 	// function weapReplace() {
 	// 	yield adventure.say("Here's your new weapon: "+newWeap, "Stats - Damage: "+newWeap.)
 	// 	myWeap=weapon[myWeap];
-	// } for replacing equipment, not done
+	// } >>>>>>for replacing equipment, not done<<<<<<
 }
 
 
